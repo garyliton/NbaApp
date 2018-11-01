@@ -1,0 +1,1 @@
+- understand fetch and all its parameters

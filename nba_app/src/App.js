@@ -1,27 +1,78 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+
+ 
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      items: [],
+      isLoaded: false
+    }
+  }
+
+  componentDidMount() {
+    // fetch('https://jsonplaceholder.typicode.com/users')
+    //   .then(res => res.json())
+    //   .then(json => {
+    //     this.setState({
+    //       isLoaded: true,
+    //       items: json
+    //     })
+    //   })
+
+    // fetch('http://127.0.0.1:5000/', {
+    //   method: 'post',
+    //   headers:new Headers({
+    //     'Content-Type': 'application/json'
+    //   }),
+    //   body: JSON.stringify({
+    //     "name": "FUCKKKK"
+    //   })
+    // })
+
+    fetch('http://127.0.0.1:5000/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'LITTTTY'
+      })
+    }).then(function(response) {
+      return response.json();
+    }).then(function(data){
+      console.log(data.yo);
+    })
+
+
+
+  }
+
+
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+    var { isLoaded, items } = this.state;
+
+    if(!isLoaded) {
+      return <div>Loading...</div>
+    } else {
+      return (
+        <div className="App">
+          <ul>
+            {items.map(item => (
+              <li key={item.id}>
+                Name: {item.name} | Email: {item.email}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+
+    
   }
 }
 
