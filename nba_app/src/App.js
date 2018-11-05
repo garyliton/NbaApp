@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import { Menu } from './Menu'
+import Standings from './Standings';
+import Teams from './Teams';
 
  
 
 class App extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -35,7 +36,6 @@ class App extends Component {
       })
     })
     
-
     // fetch('http://127.0.0.1:5000/', {
     //   method: 'POST',
     //   headers: {
@@ -57,29 +57,70 @@ class App extends Component {
 
 
   render() {
-
     if (this.state.wait){
       return (
         <div className="App"></div>
       );
-    } else {
-      console.log(this.state.games)
+    } 
+    else {
       const game_seq = Object.keys(this.state.games);
-      console.log(game_seq);
+    
       const games_today = game_seq.map((seq_num) =>
-        <li key={this.state.games[seq_num]["TEAM_1_GAME_SEQUENCE"]}>{this.state.games[seq_num]["TEAM_1_ABBREVIATION"]} vs {this.state.games[seq_num]["TEAM_2_ABBREVIATION"]}</li>
+        <div key={this.state.games[seq_num]["TEAM_1_GAME_SEQUENCE"]} className='scoresRow'>
+            <div className='scoresTeamOne'>
+              <div>
+                <div><img src={require("" + this.state.games[seq_num]["TEAM_1_IMG"])} className='logo'/></div>
+                <div>{this.state.games[seq_num]["TEAM_1_ABBREVIATION"]}</div>  
+              </div>
+              <div>
+                {this.state.games[seq_num]["TEAM_1_WINS_LOSSES"]}
+              </div>
+            </div>
+
+            <div className='scoresTeamOneScore'>
+              <div>{this.state.games[seq_num]["TEAM_1_PTS"]}</div>  
+            </div>
+           
+
+    
+
+
+            <div className='scoresVs'>
+              vs
+            </div> 
+
+            <div className='scoresTeamTwoScore'>
+              <div>{this.state.games[seq_num]["TEAM_2_PTS"]}</div>  
+            </div>
+            <div className='scoresTeamTwo'>
+              <div>
+                <div><img src={require("" + this.state.games[seq_num]["TEAM_2_IMG"])} className='logo'/></div>
+                <div>{this.state.games[seq_num]["TEAM_2_ABBREVIATION"]}</div>  
+              </div>
+              <div>
+                {this.state.games[seq_num]["TEAM_2_WINS_LOSSES"]}
+              </div>
+            </div>
+        </div>
       );
+
       return (
+       
         <div className="App">
-        
-        <ul>
-          {games_today}
-        </ul>
+        <Menu />
+        {(this.props.location.pathname === "/") ?
+            <div className='scoresTable'>
+              {games_today}
+            </div> :
+          (this.props.location.pathname === "/standings") ?
+            <Standings /> : 
+            <Teams />
+        }
           
+        
         </div>
       );
     }
-  
   }
 }
 

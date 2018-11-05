@@ -30,3 +30,53 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+.scoresTable {
+  margin: auto;
+    width: 50%;
+    border: 3px solid black;
+   
+ 
+}
+
+.scoresRow {
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.scoresTeamOne {
+  align-content: left;
+  display:inline-block;
+  padding: 10px;
+}
+
+.scoresTeamOneScore {
+  display:inline-block;
+}
+
+
+
+.scoresVs {
+  display: inline;
+  display:inline-block;
+  padding: 10px;
+}
+
+.scoresTeamTwo {
+  align-content: right;
+  display:inline-block;
+  padding: 10px;
+
+}
+
+.scoresTeamTwoScore {
+  display:inline-block;
+}
+
+
+
+.logo {
+  height: 30px;
+}
