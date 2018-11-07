@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from './Menu'
 import Standings from './Standings';
 import Teams from './Teams';
+import Leaders from './Leaders';
 
  
 
@@ -26,10 +27,12 @@ class App extends Component {
     })
     .then(function(res) {
       return res.json();
-    }).then(function(data) {
+    })
+    .then(function(data) {
       data = JSON.parse(data)
       return(data)
-    }).then(function(new_state) {
+    })
+    .then(function(new_state) {
       that.setState({ 
         games: new_state,
         wait: false
@@ -114,7 +117,9 @@ class App extends Component {
             </div> :
           (this.props.location.pathname === "/standings") ?
             <Standings /> : 
-            <Teams />
+          (this.props.location.pathname === "/teams") ?
+            <Teams /> :
+            <Leaders />
         }
           
         

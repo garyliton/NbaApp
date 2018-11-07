@@ -8,6 +8,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import Whoops404 from './Whoops404';
 import Standings from './Standings';
 import Teams from './Teams';
+import Leaders from './Leaders';
 
 window.React = React
 
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Route path="/"  component={App}/>
         <Route path="/standings" component={App} />
         <Route path="/teams" component={App} />
+        <Route path="/leaders" component={App} />
         <Route path="*" component={Whoops404}/>
     </Router>,
     document.getElementById('root')

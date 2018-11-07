@@ -12,6 +12,9 @@ export const Menu = () =>
         <Link to='/teams' activeClassName="selected">
             Teams
         </Link>
+        <Link to='/leaders' activeClassName="selected">
+            Leaders
+        </Link>
     </nav>
 
 export default Menu;
